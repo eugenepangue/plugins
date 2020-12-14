@@ -52,6 +52,28 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
         (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
     displayListenerProxy.onPreWebViewInitialization(displayManager);
     webView = new InputAwareWebView(context, containerView);
+    
+    context1 = context;
+    webView.setWebChromeClient ( new WebChromeClient () {
+      @Override
+      public  boolean onShowFileChooser (
+              WebView webView, ValueCallback<Uri[]> filePathCallback,
+              FileChooserParams fileChooserParams) {
+
+        // Successfully jump to newActivity! ! ! Very nice
+         // jump to newActivity to open the folder operation 
+        Intent intent = new Intent(context1, newActivity. class );
+        newActivity.getfilePathCallback(filePathCallback);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context1.startActivity(intent);
+        return true;
+      }
+
+      public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+        callback.invoke(origin, true, false);
+      }
+
+    });
     /**
      * start
      * input='file'
