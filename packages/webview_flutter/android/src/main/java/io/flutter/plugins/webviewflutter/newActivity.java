@@ -76,7 +76,7 @@ public class newActivity extends Activity {
 
         // Filesystem.
         final Intent fileIntent = new Intent();
-        fileIntent.setType("*/*");
+        fileIntent.setType("image/*");
         fileIntent.setAction(Intent.ACTION_GET_CONTENT);
         fileIntent.addCategory(Intent.CATEGORY_OPENABLE);
 
